@@ -1,5 +1,8 @@
 # webrtc-video-chat
 
-###How to run locally
-####clone
-####npm run signalhub (to start the signaling server)
+### How To Install
+Step  | Action
+------------- | -------------
+1  | clone
+2  | npm install
+3  | npm run signalhub (to start the signaling server)
