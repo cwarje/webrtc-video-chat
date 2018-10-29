@@ -1,0 +1,26 @@
+{
+  "name": "webrtc-video-chat",
+  "version": "1.0.0",
+  "description": "Video chat application",
+  "main": "index.js",
+  "scripts": {
+    "start": "budo index.js",
+    "signalhub": "signalhub listen -p 8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cwarje/webrtc-video-chat.git"
+  },
+  "author": "Cameron Warje",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cwarje/webrtc-video-chat/issues"
+  },
+  "homepage": "https://github.com/cwarje/webrtc-video-chat#readme",
+  "dependencies": {
+    "signalhub": "^4.9.0"
+  },
+  "devDependencies": {
+    "budo": "^11.5.0"
+  }
+}
