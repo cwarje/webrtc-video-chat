@@ -28,8 +28,6 @@ navigator.mediaDevices.getUserMedia({
             // add the new user's stream to your window
             users[id].addStream(peer.stream)
             console.log(`user ${id} connected`)
-        } else {
-            console.log('we have an issue');
         }
     })
 
