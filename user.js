@@ -4,28 +4,32 @@ module.exports = User
 // Creates a user with the specified attributes.
 function User (data) {
     data = data || {}
-    this.color = data.color || randomColor()
-    this.x = 0
-    this.y = 0
-    this.element = document.createElement('div')
+    // this.id = data.id || generateGUID()
+    this.name = data.name || 'Anonymous'
+    this.element = document.createElement('video')
     Object.assign(this.element.style, {
         width: '64px',
         height: '64px',
-        position: 'absolute',
-        top: '0px',
-        left: '0px',
-        backgroundColor: this.color
+        position: 'relative'
     })
     document.body.appendChild(this.element)
 }
 
+// Generates a mock GUID, from https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+function generateGUID() {
+    var S4 = function () {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    };
+    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+}
+
+User.prototype.addStream = function (stream) {
+    this.element.srcObject = stream;
+    this.element.play();
+}
+
 // Allows for updating the user object.
-User.prototype.update = (data) => {
+User.prototype.update = function (data) {
     data = data || {}
-    this.x = data.x || this.x
-    this.y = data.y || this.y
-    Object.assign(this.element.style, {
-        top: `${this.y}px`,
-        left: `${this.x}px`
-    })
+    this.name = data.name || this.name
 }

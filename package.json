@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/cwarje/webrtc-video-chat#readme",
   "dependencies": {
-    "signalhub": "^4.9.0"
+    "signalhub": "^4.9.0",
+    "webrtc-swarm": "^2.9.0"
   },
   "devDependencies": {
     "budo": "^11.5.0"
