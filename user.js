@@ -1,19 +1,25 @@
 module.exports = User
 
-// pass an id later, and name.
 // Creates a user with the specified attributes.
 function User (data) {
     console.log('user created');
     data = data || {}
-    // this.id = data.id || generateGUID()
-    this.name = data.name || 'Anonymous'
+    this.name = 'Anonymous'
+
+    var divider = document.createElement("div");
+    var displayName = document.createTextNode(this.name);
+
     this.element = document.createElement('video')
     Object.assign(this.element.style, {
-        width: '64px',
-        height: '64px',
+        width: '256px',
+        height: '230px',
         position: 'relative'
     })
-    document.body.appendChild(this.element)
+
+    divider.appendChild(displayName);
+    divider.appendChild(this.element);
+
+    document.getElementById('videos').appendChild(divider);
 }
 
 User.prototype.addStream = function (stream) {
@@ -25,4 +31,5 @@ User.prototype.addStream = function (stream) {
 User.prototype.update = function (data) {
     data = data || {}
     this.name = data.name || this.name
+    
 }

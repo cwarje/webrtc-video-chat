@@ -1,3 +1,5 @@
+let users = {};
+
 navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true
@@ -18,7 +20,7 @@ navigator.mediaDevices.getUserMedia({
     you.addStream(stream);
 
     const users = {};
-    swarm.on('connect', (peer, id) => {
+    swarm.on('connect', function(peer,id) {
         if (!users[id]) { // if new user, create them
             users[id] = new User();
             peer.on('data', (data) => {
@@ -27,25 +29,14 @@ navigator.mediaDevices.getUserMedia({
             })
             // add the new user's stream to your window
             users[id].addStream(peer.stream)
-            console.log(`user ${id} connected`)
         }
     })
 
     // cleanup.
-    swarm.on('disconnect', (peer, id) => {
+    swarm.on('disconnect', function (peer, id) {
         if (users[id]) {
-            console.log(`user ${users[id]} disconnected`)
             users[id].element.parentNode.removeChild(users[id].element);
             delete(users[id]);
         }
     })
-
-    // setInterval(()=> {
-    //     you.update();
-    //     const youString = JSON.stringify(you);
-    //     swarm.peers.forEach((peer)=> {
-    //         peer.send(youString)
-    //     })
-    // }, 100);
-
 })
