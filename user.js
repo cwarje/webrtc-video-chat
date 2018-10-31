@@ -7,7 +7,8 @@ function User (data) {
     this.name = 'Anonymous'
 
     var divider = document.createElement("div");
-    var displayName = document.createTextNode(this.name);
+    this.nameElement = document.createTextNode(this.name);
+    this.nameElement.textContent = this.name;
 
     this.element = document.createElement('video')
     Object.assign(this.element.style, {
@@ -16,12 +17,13 @@ function User (data) {
         position: 'relative'
     })
 
-    divider.appendChild(displayName);
+    divider.appendChild(this.nameElement);
     divider.appendChild(this.element);
 
     document.getElementById('videos').appendChild(divider);
 }
 
+// Adds the peers stream to their video element and plays it.
 User.prototype.addStream = function (stream) {
     this.element.srcObject = stream;
     this.element.play();
@@ -31,5 +33,5 @@ User.prototype.addStream = function (stream) {
 User.prototype.update = function (data) {
     data = data || {}
     this.name = data.name || this.name
-    
+    this.nameElement.textContent = this.name;
 }
