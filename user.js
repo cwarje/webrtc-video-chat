@@ -6,10 +6,10 @@ function User (data) {
     data = data || {}
     this.name = 'Anonymous'
 
-    var divider = document.createElement("div");
+    let divider = document.createElement("div");
     this.nameElement = document.createTextNode(this.name);
     this.nameElement.textContent = this.name;
-    var br = document.createElement("br");
+    let br = document.createElement("br");
 
     this.element = document.createElement('video')
     Object.assign(this.element.style, {

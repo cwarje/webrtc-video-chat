@@ -3,39 +3,37 @@ navigator.mediaDevices.getUserMedia({
     audio: true
 }).then((stream) => {
 
-    const signalhub = require('signalhub');
-    const createSwarm = require('webrtc-swarm');
+    let signalhub = require('signalhub');
+    let createSwarm = require('webrtc-swarm');
 
     // Configures the signaling server.
-    const hub = signalhub('video-chat', [
+    let hub = signalhub('video-chat', [
         'http://localhost:8080'
     ]);
 
-    // gives the stream to the swarm, to give to all the peers.
-    const swarm = createSwarm(hub, {
+    // Gives the stream to the swarm, to give to all the peers.
+    let swarm = createSwarm(hub, {
         stream: stream 
     });
 
-    const User = require('./user.js');
-    const you = new User();
+    let User = require('./user.js');
+    let you = new User();
 
     setYourName();
     updatePeers();
 
     you.addStream(stream);
-    const users = {};
+    let users = {};
 
     swarm.on('connect', function(peer,id) {
-        console.log('connected to a new peer:', id)
-        console.log('total peers:', sw.peers.length)
-        if (!users[id]) { // if new user, create them
+        if (!users[id]) { // If new user, create them
             users[id] = new User();
             console.log("this happens for the first peer too!")
             peer.on('data', (data) => {
                 data = JSON.parse(data.toString()); // Parse other player's data, comes in buffer.
                 users[id].update(data);
             })
-            // add the new user's stream to your window
+            // Add the new user's stream to your window
             users[id].addStream(peer.stream)
         }
         
@@ -53,7 +51,7 @@ navigator.mediaDevices.getUserMedia({
     // Update peers with your data.
     function updatePeers() {
         you.update()
-        const youString = JSON.stringify(you)
+        let youString = JSON.stringify(you)
         swarm.peers.forEach(function (peer) {
             peer.send(youString)
         })
