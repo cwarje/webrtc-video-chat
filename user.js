@@ -9,17 +9,19 @@ function User (data) {
     var divider = document.createElement("div");
     this.nameElement = document.createTextNode(this.name);
     this.nameElement.textContent = this.name;
+    var br = document.createElement("br");
 
     this.element = document.createElement('video')
     Object.assign(this.element.style, {
         width: '256px',
         height: '230px',
-        position: 'relative'
+        position: 'relative',
+        transform: 'rotateY(180deg)'
     })
 
     divider.appendChild(this.nameElement);
+    divider.appendChild(br);
     divider.appendChild(this.element);
-
     document.getElementById('videos').appendChild(divider);
 }
 

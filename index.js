@@ -26,6 +26,8 @@ navigator.mediaDevices.getUserMedia({
     const users = {};
 
     swarm.on('connect', function(peer,id) {
+        console.log('connected to a new peer:', id)
+        console.log('total peers:', sw.peers.length)
         if (!users[id]) { // if new user, create them
             users[id] = new User();
             console.log("this happens for the first peer too!")
