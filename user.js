@@ -13,8 +13,8 @@ function User (data) {
 
     this.element = document.createElement('video')
     Object.assign(this.element.style, {
-        width: '256px',
-        height: '230px',
+        width: '640px',
+        height: '360px',
         position: 'relative',
         transform: 'rotateY(180deg)'
     })
